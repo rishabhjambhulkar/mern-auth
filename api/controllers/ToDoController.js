@@ -4,6 +4,7 @@ export const viewSeatMap = async (req, res) => {
   try {
     const view = await Seat.find();
     res.send(view);
+    console.log(view);
   } catch (err) {
     console.error("Error viewing SeatMap:", err);
     res.status(500).json({ error: 'Internal Server Error' });
