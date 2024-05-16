@@ -8,7 +8,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import OAuth from '../components/OAuth';
 
-export default function SignIn() {
+export default function SignIn({ setIsAuthenticated }) {
   const [formData, setFormData] = useState({});
   const { loading, error } = useSelector((state) => state.user);
 
@@ -34,6 +34,7 @@ export default function SignIn() {
         dispatch(signInFailure(data));
         return;
       }
+      setIsAuthenticated(true);
       dispatch(signInSuccess(data));
       navigate('/');
     } catch (error) {

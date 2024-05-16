@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import OAuth from '../components/OAuth';
 
-export default function SignUp() {
+export default function SignUp({ setIsAuthenticated }) {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -10,6 +10,8 @@ export default function SignUp() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
+
+  console.log(formData)
 
 
 
@@ -33,6 +35,8 @@ export default function SignUp() {
         setError(true);
         return;
       }
+      setIsAuthenticated(true);
+      console.log(isAuthenticated);
       navigate('/sign-in');
     } catch (error) {
       setLoading(false);

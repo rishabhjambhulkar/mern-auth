@@ -13,13 +13,19 @@ console.log(jwtSecretKey, "jwt secret key");
 
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
+  console.log(username, email, password)
   const hashedPassword = bcryptjs.hashSync(password, 10);
   const newUser = new User({ username, email, password: hashedPassword });
   try {
     await newUser.save();
+    console.log(newUser)
     res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
-    next(error);
+    // Log the error for debugging purposes
+    console.error('Error occurred while saving user:', error);
+    
+    // Send an error response with the error message
+    res.status(500).json({ error: error.message });
   }
 };
 

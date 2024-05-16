@@ -18,7 +18,7 @@ import {
   signOut,
 } from '../redux/user/userSlice';
 
-export default function Profile() {
+export default function Profile({ setIsAuthenticated }) {
   const dispatch = useDispatch();
   const fileRef = useRef(null);
   const [image, setImage] = useState(undefined);
@@ -109,13 +109,16 @@ export default function Profile() {
     }
   };
 
-  const handleSignOut = async () => {
+  const handleSignOut = async (setIsAuthenticated) => {
     try {
       await fetch('/api/auth/signout');
-      dispatch(signOut())
+      dispatch(signOut());
+      setIsAuthenticated(false); // Update authentication state
+      console.log(setIsAuthenticated)
     } catch (error) {
       console.log(error);
     }
+  
   };
   return (
     <div className='p-3 max-w-lg mx-auto'>
@@ -187,7 +190,7 @@ export default function Profile() {
         >
           Delete Account
         </span>
-        <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>
+        <span onClick={() => handleSignOut(setIsAuthenticated)} className='text-red-700 cursor-pointer'>
           Sign out
         </span>
       </div>
