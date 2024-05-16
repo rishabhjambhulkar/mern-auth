@@ -19,6 +19,9 @@ export default function Header() {
           <Link to='/book'>
             <li>Booking</li>
           </Link>
+          <Link to='/guess'>
+            <li>Number Guessing Game</li>
+          </Link>
           <Link to='/profile'>
             {currentUser ? (
               <img src={currentUser.profilePicture} alt='profile' className='h-7 w-7 rounded-full object-cover' />
