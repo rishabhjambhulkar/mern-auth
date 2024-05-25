@@ -15,7 +15,7 @@ function App() {
   console.log(isAuthenticated);
   return (
     <BrowserRouter>
-      {isAuthenticated && <Header />}
+      <Header />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/verification' element={<Verification />} />
