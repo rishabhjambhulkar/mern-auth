@@ -8,7 +8,7 @@ import Header from './components/Header';
 import PrivateRoute from './components/PrivateRoute';
 import Book from './pages/Book';
 import { useState } from 'react';
-import Guess from './pages/guess';
+import Guess from './pages/Guess';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
